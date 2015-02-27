@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "private": "true",
   "dependencies": {
+    "HTTPRequest": "^0.1.1",
     "body-parser": "^1.9.0",
-    "express": "*",
+    "cron": "^1.0.6",
+    "express": "3.*",
     "jade": "*",
     "mongoose": "^3.8.23",
     "nib": "*",
     "node-restful": "^0.1.17",
-    "stylus": "*"
+    "stylus": "*",
+    "xml-parser": "^1.2.0"
   }
 }

@@ -12,7 +12,9 @@ bnrSchema = new Schema({
 var bnrModel = mongoose.model('rateInfo', bnrSchema);	
 
 var findByDate = function(res) {
-  bnrModel.find({ }, function(error, data){
+  bnrModel.find({"date": {
+      $gte: new Date("2015-02-27T00:00:00Z")
+    }}, function(error, data) {
     res.end(JSON.stringify(data));  
   });
 };
