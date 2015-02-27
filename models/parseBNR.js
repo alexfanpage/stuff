@@ -24,10 +24,10 @@ var parseRate = function(res){
 		console.log(date);
 
 		var populateDB = function() {
-	 		var saveEuro = new model.bnrModel({ 
-	  		"name" : euro, 
-	  		"value" : valueEuro, 
-	  		"date" : date 
+	 		var saveEuro = new model.bnrModel({
+	  		"name" : euro,
+	  		"value" : valueEuro,
+	  		"date" : date
 			});
 			var saveUsd = new model.bnrModel({
 				"name" : usd,
