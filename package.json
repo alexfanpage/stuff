@@ -1,0 +1,14 @@
+{
+  "name": "Site",
+  "version": "1.0.0",
+  "private": "true",
+  "dependencies": {
+    "body-parser": "^1.9.0",
+    "express": "*",
+    "jade": "*",
+    "mongoose": "^3.8.23",
+    "nib": "*",
+    "node-restful": "^0.1.17",
+    "stylus": "*"
+  }
+}
