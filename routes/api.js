@@ -1,21 +1,18 @@
 // Dependencies
-var express  = require('express'),
-    app = express();
+var express  = require('express');
+var app = express();
+
 // Models
 var rateInfo = require('../models/parseBNR.js');
-var certainRateInfo = require('../models/post.js');
+var bnrModel = require('../models/bnrModel.js');
 
-// Routes
-app.get('/currency', function(req, res) {
-  rateInfo.parseRate(res);
+app.get('/currencies/today', function(req, res){
+  bnrModel.findByTodayDate(res);
 });
 
-app.get('/post', function(req, res){
-  certainRateInfo.findByDate(res);
+app.get('/currencies', function(req, res) {
+  bnrModel.findAll(res);
 });
 
 // Return app
 module.exports = app;
-
-
-

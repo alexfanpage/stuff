@@ -27,11 +27,11 @@ var chart = new Chartist.Line('.ct-chart', {
 });
 
 var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
- 
+
 $(document).on('mouseenter', '.ct-point', function() {
   var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
       value = $(this).attr('ct:value');
-  
+
   $tooltip.text(seriesName + ': ' + value);
   $tooltip.removeClass('tooltip-hidden');
 });

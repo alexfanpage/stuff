@@ -1,5 +1,5 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 bnrSchema = new Schema({
   name  : { type : String, required: true, trim: true },
@@ -9,15 +9,25 @@ bnrSchema = new Schema({
 
 var bnrModel = mongoose.model('rateInfo', bnrSchema);
 
-var findByDate = function(res) {
+var findByTodayDate = function(res) {
+  var d = new Date();
+  d.setHours(0,0,0,0);
+
   bnrModel.find({"date": {
-      $gte: new Date("2015-02-27T00:00:00Z")
+      $gte: new Date(d.toISOString())
     }}, function(error, data) {
     res.end(JSON.stringify(data));
   });
 };
 
+var findAll = function(res) {
+  bnrModel.find({}, function(err, data) {
+    res.end(JSON.stringify(data));
+  });
+};
+
 module.exports = {
-  findByDate : findByDate,
+  findAll: findAll,
+  findByTodayDate : findByTodayDate,
   bnrModel : bnrModel
 }

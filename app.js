@@ -3,6 +3,9 @@ var express = require('express');
 var stylus = require('stylus');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var CronJob = require('cron').CronJob;
+
+var parseBNR = require('./models/parseBNR');
 
 var app = express();
 
@@ -36,3 +39,9 @@ app.use('/api', require('./routes/api'));
 // Start server
 app.listen(3000);
 console.log("Let's rumble!");
+
+// Fire up the cronjob
+new CronJob('00 00 * * 1-5', function(){
+  parseBNR.populateDB();
+  console.log('BNR data parsed succesfully!');
+}, null, true);
