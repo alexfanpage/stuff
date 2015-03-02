@@ -1,9 +1,5 @@
 extends layout
 
-block custom-stylesheets
-  link(rel='stylesheet', href='/css/chartist.min.css')
-  link(rel='stylesheet', href='/css/chart.css')
-
 block content
   div.container
     .row
@@ -32,7 +28,3 @@ block content
           h1 Evolutie Curs
           div.ct-chart.ct-golden-section
           p by Alex
-
-block custom-scripts
-  script(type="text/javascript" src="/js/chartist.min.js")
-  script(type="text/javascript" src="/js/file.js")

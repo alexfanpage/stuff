@@ -13,6 +13,5 @@ app.get('/currencies/today', function(req, res){
 app.get('/currencies', function(req, res) {
   bnrModel.findAll(res);
 });
-
 // Return app
 module.exports = app;
