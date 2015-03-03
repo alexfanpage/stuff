@@ -1,0 +1,39 @@
+body {
+  font-size: 14px;
+}
+body .container {
+  margin: 6rem auto;
+}
+body .container .row .content h1 {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+}
+body .container .row .content .error {
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #f00;
+  margin-top: 1rem;
+}
+body .container .row .content form .profile-img {
+  width: 9rem;
+  height: 9rem;
+  margin: 0 auto 2rem auto;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+body .container .row .content form .centered {
+  text-align: center;
+}
+body .container .row .content form .btn-lg {
+  width: 15rem;
+}
+body .container .row .content form .panel-footer {
+  padding: 1px 1rem;
+  color: #a0a0a0;
+  text-decoration: none;
+  text-align: right;
+}

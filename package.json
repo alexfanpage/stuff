@@ -5,12 +5,15 @@
   "dependencies": {
     "HTTPRequest": "^0.1.1",
     "body-parser": "^1.9.0",
+    "client-sessions": "^0.7.0",
     "cron": "^1.0.6",
     "express": "3.*",
+    "express-session": "^1.10.3",
     "jade": "*",
     "mongoose": "^3.8.23",
     "nib": "*",
     "node-restful": "^0.1.17",
+    "passport": "^0.2.1",
     "stylus": "*",
     "xml-parser": "^1.2.0"
   }

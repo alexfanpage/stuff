@@ -3,6 +3,8 @@ extends layout
 block content
   div.container
     .row
+      a(href='/logout') Logout
+      h1 Hello #{user.email}
       div.content.col-md-4.col-md-offset-4
         h1 Curs Valutar BNR
         table.table.table-striped.table-hover
@@ -24,7 +26,18 @@ block content
               td.name3
               td.val3
               td.date
+        h1 Evolutie Curs
+        div.nav-collapse
+          .dropdown
+            a(data-toggle='dropdown', href='#menu1').btn.btn-default.dropdown-toogle Change View 
+              b.caret
+            ul.dropdown-menu
+              li
+                a(href='#', id='eur') Eur
+              li
+                a(href='#', id='usd') Usd
+              li
+                a(href='#', id='all') Multiple Chart View
+        div.ct-chart.ct-golden-section
         footer
-          h1 Evolutie Curs
-          div.ct-chart.ct-golden-section
           p by Alex

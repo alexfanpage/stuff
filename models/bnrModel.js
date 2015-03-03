@@ -26,7 +26,48 @@ var findAll = function(res) {
   });
 };
 
+// Euro
+var findEurByTodayDate = function(res) {
+  var d = new Date();
+  d.setHours(0,0,0,0);
+
+  bnrModel.find({name: 'EUR', "date": {
+      $gte: new Date(d.toISOString())
+    }}, function(err, data) {
+    res.end(JSON.stringify(data));
+  });
+};
+
+var findAllEur = function(res){
+  bnrModel.find({name: 'EUR'}, function(err, data) {
+    res.end(JSON.stringify(data));
+  });
+};
+
+
+// USD
+var findUsdByTodayDate = function(res) {
+  var d = new Date();
+  d.setHours(0,0,0,0);
+
+  bnrModel.find({name: 'USD', "date": {
+      $gte: new Date(d.toISOString())
+    }}, function(err, data) {
+    res.end(JSON.stringify(data));
+  });
+};
+
+var findAllUsd = function(res){
+  bnrModel.find({name: 'USD'}, function(err, data) {
+    res.end(JSON.stringify(data));
+  });
+};
+
 module.exports = {
+  findEurByTodayDate: findEurByTodayDate,
+  findUsdByTodayDate: findUsdByTodayDate,
+  findAllEur: findAllEur,
+  findAllUsd: findAllUsd,
   findAll: findAll,
   findByTodayDate : findByTodayDate,
   bnrModel : bnrModel
