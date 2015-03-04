@@ -79,7 +79,6 @@ app.post('/login', function (req, res){
       if (req.body.password === user.password){
         req.session.user = user;
         res.redirect('/');
-        console.log(user);
       } else {
         res.render('login', {
           title: 'Login Page',
