@@ -24,6 +24,10 @@ app.get('/currency/eur/today', function(req, res){
   bnrModel.findEurByTodayDate(res);
 });
 
+app.get('/currency/eur/last5days', function(req, res){
+  bnrModel.findEurByLastFiveDays(res);
+});
+
 // Usd
 app.get('/currency/usd', function(req, res){
   bnrModel.findAllUsd(res);

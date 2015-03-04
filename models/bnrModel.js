@@ -27,6 +27,18 @@ var findAll = function(res) {
 };
 
 // Euro
+var findEurByLastFiveDays = function(res) {
+  var d = new Date();
+  d.setHours(0,0,0,0);
+  d.setDate(d.getDate()-4);
+
+  bnrModel.find({name: 'EUR', "date": {
+      $gte: new Date(d.toISOString())
+    }}, function(err, data) {
+    res.end(JSON.stringify(data));
+  });
+};
+
 var findEurByTodayDate = function(res) {
   var d = new Date();
   d.setHours(0,0,0,0);
@@ -65,6 +77,7 @@ var findAllUsd = function(res){
 
 module.exports = {
   findEurByTodayDate: findEurByTodayDate,
+  findEurByLastFiveDays: findEurByLastFiveDays,
   findUsdByTodayDate: findUsdByTodayDate,
   findAllEur: findAllEur,
   findAllUsd: findAllUsd,
