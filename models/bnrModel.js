@@ -50,8 +50,8 @@ var findEurByTodayDate = function(res) {
   });
 };
 
-var findAllEur = function(res){
-  bnrModel.find({name: 'EUR'}, function(err, data) {
+var findAllByCurrency = function(res, currency){
+  bnrModel.find({name: currency.toUpperCase()}, function(err, data) {
     res.end(JSON.stringify(data));
   });
 };
@@ -79,7 +79,7 @@ module.exports = {
   findEurByTodayDate: findEurByTodayDate,
   findEurByLastFiveDays: findEurByLastFiveDays,
   findUsdByTodayDate: findUsdByTodayDate,
-  findAllEur: findAllEur,
+  findAllByCurrency: findAllByCurrency,
   findAllUsd: findAllUsd,
   findAll: findAll,
   findByTodayDate : findByTodayDate,

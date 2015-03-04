@@ -16,25 +16,16 @@ app.get('/currencies/today', function(req, res){
 });
 
 // Euro
-app.get('/currency/eur', function(req, res){
-  bnrModel.findAllEur(res);
+app.get('/currency/:currency', function(req, res){
+  bnrModel.findAllByCurrency(res, req.params.currency);
 });
 
 app.get('/currency/eur/today', function(req, res){
   bnrModel.findEurByTodayDate(res);
 });
 
-app.get('/currency/eur/last5days', function(req, res){
+app.get('/currency/eur/last-five', function(req, res){
   bnrModel.findEurByLastFiveDays(res);
-});
-
-// Usd
-app.get('/currency/usd', function(req, res){
-  bnrModel.findAllUsd(res);
-});
-
-app.get('/currency/usd/today', function(req, res){
-  bnrModel.findUsdByTodayDate(res);
 });
 
 // Return app

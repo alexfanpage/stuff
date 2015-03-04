@@ -97,67 +97,61 @@
 
 
 
-    $.ajax({
-       url: "http://localhost:3000/api/currency/eur/last5days",
-      dataType: 'json',
-      success: function(results) {
-                // console.log(results);
-                $.each(results, function(i, val) {
-                  console.log(val);
-                  for (var i = 0; i < results.length; i++) {
-                    var currDate = results[i].date;
-                    var currency = results[i].value;
-                    var name = results[i].name;
-                  }
-                  // console.log(name);
-                    
-                
+$.ajax({
+   url: "http://localhost:3000/api/currency/eur/last-five",
+  dataType: 'json',
+  success: function(results) {
+    var currency = [];
+    var dates = [];
 
-      //CHART STUFF
-      var chart = new Chartist.Line('.ct-chart', {
-        labels: [1,2],
-        series: [
-        {
-          name: name,
-          data: [currency]
-        }]
-      }, {
-        low: 0,
-        axisX: {
-          offset: 25,
-          labelOffset: {
-            y: 10
-          }
-        },
-        axisY: {
-          offset: 35,
-          labelOffset: {
-            x: -10,
-            y: 3
-          }
+    for (var i=0; i < results.length; i++) {
+      currency.push(results[i].value);
+      dates.push(results[i].date);
+    }
+
+    //CHART STUFF
+    var chart = new Chartist.Line('.ct-chart', {
+      labels: dates,
+      series: [
+      {
+        name: results[0].name,
+        data: currency
+      }]
+    }, {
+      low: 0,
+      axisX: {
+        offset: 25,
+        labelOffset: {
+          y: 10
         }
-      });
+      },
+      axisY: {
+        offset: 35,
+        labelOffset: {
+          x: -10,
+          y: 3
+        }
+      }
+    });
 
-      var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
+    var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
 
-      $(document).on('mouseenter', '.ct-point', function() {
-        var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
-            value = $(this).attr('ct:value');
+    $(document).on('mouseenter', '.ct-point', function() {
+      var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
+          value = $(this).attr('ct:value');
 
-        $tooltip.text(seriesName + ': ' + value);
-        $tooltip.removeClass('tooltip-hidden');
-      });
+      $tooltip.text(seriesName + ': ' + value);
+      $tooltip.removeClass('tooltip-hidden');
+    });
 
-      $(document).on('mouseleave', '.ct-point', function() {
-        $tooltip.addClass('tooltip-hidden');
-      });
+    $(document).on('mouseleave', '.ct-point', function() {
+      $tooltip.addClass('tooltip-hidden');
+    });
 
-      $(document).on('mousemove', '.ct-point', function(event) {
-        console.log(event);
-        $tooltip.css({
-          left: (event.offsetX || event.originalEvent.layerX) - $tooltip.width() / 2,
-          top: (event.offsetY || event.originalEvent.layerY) - $tooltip.height() - 20
-        });
+    $(document).on('mousemove', '.ct-point', function(event) {
+      $tooltip.css({
+        left: (event.offsetX || event.originalEvent.layerX) - $tooltip.width() / 2,
+        top: (event.offsetY || event.originalEvent.layerY) - $tooltip.height() - 20
       });
     });
   }

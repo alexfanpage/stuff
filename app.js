@@ -43,6 +43,7 @@ app.use(sessions({
 app.get('/register', function (req, res){
   res.render('register', {title: 'Register Page'});
 });
+
 app.post('/register', function (req, res){
   var users = new user.userModel({
     email: req.body.email,
@@ -52,8 +53,8 @@ app.post('/register', function (req, res){
     if (err){
       var err = "Try again !";
     if (err.code === 11000){
-      err = 'This email si already taken, try another one !';      
-    } 
+      err = 'This email si already taken, try another one !';
+    }
       res.render('register', {
         title: 'Register Page',
         error: err
@@ -68,6 +69,7 @@ app.post('/register', function (req, res){
 app.get('/login', function (req, res){
   res.render('login', {title: 'Login Page'});
 });
+
 app.post('/login', function (req, res){
   user.userModel.findOne({email: req.body.email}, function(err, user){
     if(!user){
