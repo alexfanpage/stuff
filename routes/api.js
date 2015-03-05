@@ -15,7 +15,10 @@ app.get('/currencies/today', function(req, res){
   bnrModel.findByTodayDate(res);
 });
 
-// Euro
+app.get('/currencies/last-five', function(req, res){
+  bnrModel.findAllByLastFiveDays(res);
+});
+
 app.get('/currency/:currency', function(req, res){
   var currency = req.params.currency;
   bnrModel.findAllByCurrency(res, currency);
@@ -23,7 +26,7 @@ app.get('/currency/:currency', function(req, res){
 
 app.get('/currency/:currency/last-five', function(req, res){
   var currency = req.params.currency;
-  bnrModel.findAllByLastFiveDays(res, currency);
+  bnrModel.findAllCurrenciesByLastFiveDays(res, currency);
 });
 
 app.get('/currency/:currency/today', function(req, res){

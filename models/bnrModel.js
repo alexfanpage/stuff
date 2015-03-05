@@ -26,7 +26,7 @@ var findAll = function(res) {
   });
 };
 
-var findAllByLastFiveDays = function(res, currency) {
+var findAllCurrenciesByLastFiveDays = function(res, currency) {
   var d = new Date();
   d.setHours(0,0,0,0);
   d.setDate(d.getDate()-4);
@@ -37,6 +37,19 @@ var findAllByLastFiveDays = function(res, currency) {
     res.end(JSON.stringify(data));
   });
 };
+
+var findAllByLastFiveDays = function(res, currency) {
+  var d = new Date();
+  d.setHours(0,0,0,0);
+  d.setDate(d.getDate()-4);
+
+  bnrModel.find({"date": {
+      $gte: new Date(d.toISOString())
+    }}, function(err, data) {
+    res.end(JSON.stringify(data));
+  });
+};
+
 
 var findCurrencyByTodayDate = function(res, currency) {
   var d = new Date();
@@ -58,6 +71,7 @@ var findAllByCurrency = function(res, currency){
 
 module.exports = {
   findCurrencyByTodayDate: findCurrencyByTodayDate,
+  findAllCurrenciesByLastFiveDays: findAllCurrenciesByLastFiveDays,
   findAllByLastFiveDays: findAllByLastFiveDays,
   findAllByCurrency: findAllByCurrency,
   findAll: findAll,
