@@ -134,3 +134,5 @@ new CronJob('00 00 * * 1-5', function(){
   parseBNR.populateDB();
   console.log('BNR data parsed succesfully!');
 }, null, true);
+
+  parseBNR.populateDB();

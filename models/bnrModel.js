@@ -21,7 +21,7 @@ var findByTodayDate = function(res) {
 };
 
 var findAll = function(res) {
-  bnrModel.find({}, function(err, data) {
+  bnrModel.find({}).sort({date: 'desc'}).exec(function(err, data) {
     res.end(JSON.stringify(data));
   });
 };
