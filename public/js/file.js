@@ -24,7 +24,8 @@
 //     $('.date').append(currDate);
 
 
-
+   
+   
 //     //CHART STUFF
 //     var chart = new Chartist.Line('.ct-chart', {
 //       labels: ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri'],
@@ -83,31 +84,40 @@
 // });
 
 
-//     $.ajax({
-//       url: "http://localhost:3000/api/currency/eur/last5days",
-//       dataType: 'json',
-//       success: function(results) {
-//                 $.each(results, function(index, item) {
-//                   for (var i=0; i<5; i++) {
-//                     $('.val1').append(results[i].value + " lei");
-//                   }
-//                 })
-//               }
-//     });
 
+
+
+    // $.ajax({
+    //   url: "http://localhost:3000/api/currency/eur/last5days",
+    //   dataType: 'json',
+    //   success: function(results) {
+    //             $.each(results, function(index, item) {
+    //               for (var i=0; i<5; i++) {
+    //                 $('.val1').append(results[i].value + " lei");
+    //               }
+    //             })
+    //           }
+    // });
+
+
+// eur
 
 
 $.ajax({
-   url: "http://localhost:3000/api/currency/eur/last-five",
+   url: 'http://localhost:3000/api/currencies/today',
   dataType: 'json',
   success: function(results) {
     var currency = [];
     var dates = [];
+    var name = [];
 
     for (var i=0; i < results.length; i++) {
       currency.push(results[i].value);
       dates.push(results[i].date);
+      name.push(results[i].name).toString();
     }
+    $('ul.dropdown-menu').append('<li><a href="#" data-name="'+name+'" data-price="'+currency+'">'+name.join(' ')+'</a></li>');
+   
 
     //CHART STUFF
     var chart = new Chartist.Line('.ct-chart', {
@@ -156,3 +166,65 @@ $.ajax({
     });
   }
 });
+
+// // usd
+// $.ajax({
+//    url: "http://localhost:3000/api/currency/usd/last-five",
+//   dataType: 'json',
+//   success: function(results) {
+//     var currency = [];
+//     var dates = [];
+
+//     for (var i=0; i < results.length; i++) {
+//       currency.push(results[i].value);
+//       dates.push(results[i].date);
+//     }
+
+//     //CHART STUFF
+//     var chart = new Chartist.Line('.ct-chart', {
+//       labels: dates,
+//       series: [
+//       {
+//         name: results[0].name,
+//         data: currency
+//       }]
+//     }, {
+//       low: 0,
+//       axisX: {
+//         offset: 25,
+//         labelOffset: {
+//           y: 10
+//         }
+//       },
+//       axisY: {
+//         offset: 35,
+//         labelOffset: {
+//           x: -10,
+//           y: 3
+//         }
+//       }
+//     });
+
+//     var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
+
+//     $(document).on('mouseenter', '.ct-point', function() {
+//       var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
+//           value = $(this).attr('ct:value');
+
+//       $tooltip.text(seriesName + ': ' + value);
+//       $tooltip.removeClass('tooltip-hidden');
+//     });
+
+//     $(document).on('mouseleave', '.ct-point', function() {
+//       $tooltip.addClass('tooltip-hidden');
+//     });
+
+//     $(document).on('mousemove', '.ct-point', function(event) {
+//       $tooltip.css({
+//         left: (event.offsetX || event.originalEvent.layerX) - $tooltip.width() / 2,
+//         top: (event.offsetY || event.originalEvent.layerY) - $tooltip.height() - 20
+//       });
+//     });
+//   }
+// });
+

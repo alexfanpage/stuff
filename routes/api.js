@@ -17,15 +17,18 @@ app.get('/currencies/today', function(req, res){
 
 // Euro
 app.get('/currency/:currency', function(req, res){
-  bnrModel.findAllByCurrency(res, req.params.currency);
+  var currency = req.params.currency;
+  bnrModel.findAllByCurrency(res, currency);
 });
 
-app.get('/currency/eur/today', function(req, res){
-  bnrModel.findEurByTodayDate(res);
+app.get('/currency/:currency/last-five', function(req, res){
+  var currency = req.params.currency;
+  bnrModel.findAllByLastFiveDays(res, currency);
 });
 
-app.get('/currency/eur/last-five', function(req, res){
-  bnrModel.findEurByLastFiveDays(res);
+app.get('/currency/:currency/today', function(req, res){
+  var currency = req.params.currency;
+  bnrModel.findCurrencyByTodayDate(res, currency);
 });
 
 // Return app

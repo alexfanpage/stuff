@@ -127,7 +127,7 @@ app.use('/api', require('./routes/api'));
 // Start server
 app.listen(3000);
 console.log("Let's rumble!");
-//console.log(user);
+
 
 // Fire up the cronjob
 new CronJob('00 00 * * 1-5', function(){
