@@ -45,7 +45,7 @@ var findAllByLastFiveDays = function(res, currency) {
 
   bnrModel.find({"date": {
       $gte: new Date(d.toISOString())
-    }}, function(err, data) {
+    }}).sort({date: 'asc'}).exec(function(err, data) {
     res.end(JSON.stringify(data));
   });
 };
