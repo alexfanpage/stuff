@@ -1,110 +1,5 @@
-// $.ajax({
-//   url: "http://localhost:3000/api/currencies/today",
-//   dataType: 'json',
-//   success: function(results){
-//     var eurName = results[0].name;
-//     var eurCurrency = results[0].value;
-
-//     var usdName = results[1].name;
-//     var usdCurrency = results[1].value;
-
-//     var gbpName = results[2].name;
-//     var gbpCurrency = results[2].value;
-
-//     var currDate = results[0].date;
-
-//     $('.name1').append(eurName);
-//     $('.name2').append(usdName);
-//     $('.name3').append(gbpName);
-
-//     $('.val1').append(eurCurrency + " lei");
-//     $('.val2').append(usdCurrency + " lei");
-//     $('.val3').append(gbpCurrency + " lei");
-
-//     $('.date').append(currDate);
-
-
-   
-   
-//     //CHART STUFF
-//     var chart = new Chartist.Line('.ct-chart', {
-//       labels: ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri'],
-//       series: [
-//       {
-//         name: 'Euro',
-//         data: [4.4252, 4.5252, 4.3952, 4.5152, eurCurrency]
-//       },
-//       {
-//         name: 'Usd',
-//         data: [3.8932, 3.8632, 3.8232, 3.9232, usdCurrency]
-//       },
-//       {
-//         name: 'Gbp',
-//         data: [6.0474, 6.1474, 5.9474, 6.0474, gbpCurrency]
-//       }]
-//     }, {
-//       low: 0,
-//       axisX: {
-//         offset: 25,
-//         labelOffset: {
-//           y: 10
-//         }
-//       },
-//       axisY: {
-//         offset: 35,
-//         labelOffset: {
-//           x: -10,
-//           y: 3
-//         }
-//       }
-//     });
-
-//     var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
-
-//     $(document).on('mouseenter', '.ct-point', function() {
-//       var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
-//           value = $(this).attr('ct:value');
-
-//       $tooltip.text(seriesName + ': ' + value);
-//       $tooltip.removeClass('tooltip-hidden');
-//     });
-
-//     $(document).on('mouseleave', '.ct-point', function() {
-//       $tooltip.addClass('tooltip-hidden');
-//     });
-
-//     $(document).on('mousemove', '.ct-point', function(event) {
-//       console.log(event);
-//       $tooltip.css({
-//         left: (event.offsetX || event.originalEvent.layerX) - $tooltip.width() / 2,
-//         top: (event.offsetY || event.originalEvent.layerY) - $tooltip.height() - 20
-//       });
-//     });
-//   }
-// });
-
-
-
-
-
-    // $.ajax({
-    //   url: "http://localhost:3000/api/currency/eur/last5days",
-    //   dataType: 'json',
-    //   success: function(results) {
-    //             $.each(results, function(index, item) {
-    //               for (var i=0; i<5; i++) {
-    //                 $('.val1').append(results[i].value + " lei");
-    //               }
-    //             })
-    //           }
-    // });
-
-
-// eur
-
-
 $.ajax({
-   url: 'http://localhost:3000/api/currencies/today',
+  url: "http://localhost:3000/api/currencies/last-five",
   dataType: 'json',
   success: function(results) {
     var currency = [];
@@ -114,17 +9,23 @@ $.ajax({
     for (var i=0; i < results.length; i++) {
       currency.push(results[i].value);
       dates.push(results[i].date);
-      name.push(results[i].name).toString();
+      name.push(results[i].name);
     }
-    $('ul.dropdown-menu').append('<li><a href="#" data-name="'+name+'" data-price="'+currency+'">'+name.join(' ')+'</a></li>');
    
-
     //CHART STUFF
     var chart = new Chartist.Line('.ct-chart', {
       labels: dates,
       series: [
       {
-        name: results[0].name,
+        name: 'Euro',
+        data: currency
+      },
+      {
+        name: 'Usd',
+        data: currency
+      },
+      {
+        name: 'Gbp',
         data: currency
       }]
     }, {
@@ -167,64 +68,101 @@ $.ajax({
   }
 });
 
-// // usd
-// $.ajax({
-//    url: "http://localhost:3000/api/currency/usd/last-five",
-//   dataType: 'json',
-//   success: function(results) {
-//     var currency = [];
-//     var dates = [];
 
-//     for (var i=0; i < results.length; i++) {
-//       currency.push(results[i].value);
-//       dates.push(results[i].date);
-//     }
 
-//     //CHART STUFF
-//     var chart = new Chartist.Line('.ct-chart', {
-//       labels: dates,
-//       series: [
-//       {
-//         name: results[0].name,
-//         data: currency
-//       }]
-//     }, {
-//       low: 0,
-//       axisX: {
-//         offset: 25,
-//         labelOffset: {
-//           y: 10
-//         }
-//       },
-//       axisY: {
-//         offset: 35,
-//         labelOffset: {
-//           x: -10,
-//           y: 3
-//         }
-//       }
-//     });
+$.ajax({
+   url: 'http://localhost:3000/api/currencies/today',
+  dataType: 'json',
+  success: function(results) {
+    var currency = [];
+    var dates = [];
+    var name = [];
 
-//     var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
+    for (var i=0; i < results.length; i++) {
+      currency.push(results[i].value);
+      dates.push(results[i].date);
+      name.push(results[i].name);
 
-//     $(document).on('mouseenter', '.ct-point', function() {
-//       var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
-//           value = $(this).attr('ct:value');
 
-//       $tooltip.text(seriesName + ': ' + value);
-//       $tooltip.removeClass('tooltip-hidden');
-//     });
+      $('.name').append(results[i].name + ' ');
+      $('.val').append(results[i].value + ' ');
+      $('.lei').append('Lei' + '<br>');
+      $('.date').append(results[i].date + ' ');
+      
+      $('ul.dropdown-menu').append('<li><a href="#" id="'+results[i].name+'" data-name="'+results[i].name+'" data-price="'+results[i].value+'">'+results[i].name+'</a></li>');
+    
+      $('#EUR').on('click', function () {
+        var msglist = document.getElementById("EUR");
+        var currency = msglist.getAttribute("data-name");
+        console.log(currency);
+        $.ajax({
+          url: 'http://localhost:3000/api/currency/'+currency+'/last-five',
+          dataType: 'json',
+          success: function(results) {
+            var currency = [];
+            var dates = [];
+            var name = [];
 
-//     $(document).on('mouseleave', '.ct-point', function() {
-//       $tooltip.addClass('tooltip-hidden');
-//     });
+            for (var i=0; i < results.length; i++) {
+              currency.push(results[i].value);
+              dates.push(results[i].date);
+            }
+           
+          
 
-//     $(document).on('mousemove', '.ct-point', function(event) {
-//       $tooltip.css({
-//         left: (event.offsetX || event.originalEvent.layerX) - $tooltip.width() / 2,
-//         top: (event.offsetY || event.originalEvent.layerY) - $tooltip.height() - 20
-//       });
-//     });
-//   }
-// });
+            //CHART STUFF
+            var chart = new Chartist.Line('.ct-chart', {
+              labels: dates,
+              series: [
+              {
+                name: results[0].name,
+                data: currency
+              }]
+            }, {
+              low: 0,
+              axisX: {
+                offset: 30,
+                labelOffset: {
+                  y: 10
+                }
+              },
+              axisY: {
+                offset: 35,
+                labelOffset: {
+                  x: -20,
+                  y: 3
+                }
+              }
+            });
+
+            var $tooltip = $('<div class="tooltip tooltip-hidden"></div>').appendTo($('.ct-chart'));
+
+            $(document).on('mouseenter', '.ct-point', function() {
+              var seriesName = $(this).closest('.ct-series').attr('ct:series-name'),
+                  value = $(this).attr('ct:value');
+
+              $tooltip.text(seriesName + ': ' + value);
+              $tooltip.removeClass('tooltip-hidden');
+            });
+
+            $(document).on('mouseleave', '.ct-point', function() {
+              $tooltip.addClass('tooltip-hidden');
+            });
+
+            $(document).on('mousemove', '.ct-point', function(event) {
+              $tooltip.css({
+                left: (event.offsetX || event.originalEvent.layerX) - $tooltip.width() / 2,
+                top: (event.offsetY || event.originalEvent.layerY) - $tooltip.height() - 20
+              });
+            });
+          }
+        });
+      });
+    }
+  }
+});
+
+
+
+
 
