@@ -41,7 +41,7 @@ var findAllCurrenciesByLastFiveDays = function(res, currency) {
 var findAllByLastFiveDays = function(res, currency) {
   var d = new Date();
   d.setHours(0,0,0,0);
-  d.setDate(d.getDate()-4);
+  d.setDate(d.getDate()-5);
 
   bnrModel.find({"date": {
       $gte: new Date(d.toISOString())
