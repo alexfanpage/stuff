@@ -77,17 +77,19 @@ $.ajax({
    url: 'http://localhost:3000/api/currencies/today',
   dataType: 'json',
   success: function(results) {
-    var row = [];
     for(var index in results) {
-      row = results[index];
-      tr = document.createElement("tr"),
-      tr.innerHTML = '<td>'+results[index].name+'</td><td>'+results[index].value+'</td><td>'+results[index].date+'</td>';
-      
-      $('#table-body').append(tr);
-      $('ul.dropdown-menu').append('<li><a href="#" id="'+results[index].name+'" data-name="'+results[index].name+'" data-price="'+results[index].value+'">'+results[index].name+'</a></li>');  
+      $('ul.dropdown-menu').append('<li><a href="#" id="'+results[index].name+'" data-name="'+results[index].name+'" data-price="'+results[index].value+'">'+results[index].name+'</a></li>');
     }
-    
-    
+
+    var t = $('#data-table').DataTable();
+      for(var index in results) {
+        row = results[index];
+        t.row.add([
+          results[index].name,
+          results[index].value,
+          results[index].date
+         ]).draw();
+       }
 
     $('ul.dropdown-menu li:not(:first-child) a').on('click', function () {
       var currency = this.getAttribute("data-name");
@@ -172,3 +174,5 @@ $(document).ready(function() {
   App.init();
   TableManageDefault.init();
 });
+
+

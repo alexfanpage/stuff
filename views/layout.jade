@@ -1,8 +1,13 @@
 doctype
 html
   head
-    title #{title} - Wannabe
+    title #{title} - Wannabe 
     link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css', rel='stylesheet')
+    link(rel='stylesheet', href='/css/animate.css')
+    link(rel='stylesheet', href='/css/font-awesome.css')
+    link(rel='stylesheet', href='/css/style.min.css')
+    link(rel='stylesheet', href='/css/data-table.css') 
+
     link(rel='stylesheet', href='/css/style.css')
     link(rel='stylesheet', href='css/header.css')
     link(rel='stylesheet', href='/css/chartist.min.css')
@@ -10,11 +15,13 @@ html
   body.gray-bg
     block content
     script(type="text/javascript" src="/js/jquery-1.11.0.min.js")
+    script(type="text/javascript" src="/js/jquery-migrate-1.1.0.min.js")
+    script(type="text/javascript" src="/js/jquery-ui.min.js")
     script(type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js")
     script(type="text/javascript" src="/js/chartist.min.js")
     script(type="text/javascript" src="/js/chartist.min.js.map")
     script(type="text/javascript" src="/js/file.js")
     script(type="text/javascript" src="/js/md5.js")
-    script(type="text/javascript" src="/js/table-manage-default.demo.js")
-    script(type="text/javascript" src="/js/apps.min.js")
     script(type="text/javascript" src="/js/jquery.dataTables.js")
+    script(type="text/javascript" src="/js/table-manage-default.demo.min.js")
+    script(type="text/javascript" src="/js/apps.min.js")
