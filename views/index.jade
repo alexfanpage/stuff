@@ -2,23 +2,31 @@ extends layout
 
 block content
   div.container
-    .row
-      a(href='/logout') Logout
-      h1 Hello #{user.email}
-      div.content.col-md-6.col-md-offset-3
-        h1 Curs Valutar BNR
-        table.table.table-striped.table-hover
-          thead
-            tr
-              th Nume
-              th Valoare
-              th Data
-          tbody#table-body
+    #header.row
+      .avatar.col-xs-1.col-sm-1.col-md-1
+        img(src='')
+      .user-data.col-xs-8.col-sm-8.col-md-8
+        h3.tag #{user.email}
+      .controls.col-xs-3.col-sm-3.col-md-3
+        a(href='logout')
+          .glyphicon.glyphicon-log-in  Logout
+    .content.col-md-6.col-md-offset-3
+        .panel.panel-inverse
+          .panel-heading
+            h4.panel-title Curs BNR
+          .panel-body
+            table.table.table-striped.table-bordered#data-table
+              thead
+                tr
+                  th Nume
+                  th Valoare
+                  th Data
+              tbody#table-body
         h1 Evolutie Curs
         div.nav-collapse
           .dropdown
-            a(data-toggle='dropdown', href='#menu1').btn.btn-default.dropdown-toogle Change View 
-              b.caret
+            a(data-toggle='dropdown', href='#menu1').btn.btn-default.dropdown-toogle Change View
+              .caret
             ul.dropdown-menu
               li
                 a(href='#')#all All The Stuff

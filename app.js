@@ -38,7 +38,6 @@ app.use(sessions({
   activeDuration: 5 * 60 * 1000
 }));
 
-
 //register
 app.get('/register', function (req, res){
   res.render('register', {title: 'Register Page'});
@@ -120,14 +119,16 @@ app.get('/user', function (req, res) {
   }
 });
 
-
 // Routes
 app.use('/api', require('./routes/api'));
+
+app.use(function(req,res){
+  res.render('404');
+});
 
 // Start server
 app.listen(3000);
 console.log("Let's rumble!");
-
 
 // Fire up the cronjob
 new CronJob('00 00 * * 1-5', function(){

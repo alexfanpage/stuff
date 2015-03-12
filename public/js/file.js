@@ -156,9 +156,19 @@ $.ajax({
   }
 });
 
+$.ajax({
+    url: "http://localhost:3000/user",
+    dataType: 'json',
+    success: function(results) {
+      console.log(results.email);
+      var hash = md5(results.email);
+      $('.avatar img').attr('src', 'http://gravatar.com/avatar/' + hash + '?s=30');
+      console.log(hash);
+   }
+})
 
 
-
-
-
-
+$(document).ready(function() {
+  App.init();
+  TableManageDefault.init();
+});

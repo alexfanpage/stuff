@@ -2,30 +2,25 @@ doctype
 html
   head
     title #{title}
+    meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css', rel='stylesheet')
-    link(rel='stylesheet', href='/css/login.css')
-  body
-    .container
-      .row     
-        form.form-horizontal(method="post")
-          fieldset
-            #legend
-              legend #{title}
-            .error
-              p #{err}
-            .control-group
-              label.control-label Email
-              .controls
-                input.input-xlarge(type="text", name="email", id="email", placeholder="Email address", autofocus)
-                p.help-block Please provide your email
-            .control-group
-              label.control-label Password
-              .controls
-                input.input-xlarge(type="password", name="password", id="password", placeholder="Password", autofocus)
-                p.help-block Password should be at least 4 character
-            .control-group
-              .controls
-                button.btn.btn-success Register
-                a(href='/login').btn.btn-primary Login
-            
+    link(rel='stylesheet', href='/css/font-awesome.css')
+    link(rel='stylesheet', href='/css/animate.css')
+    link(rel='stylesheet', href='/css/style.css')
+  body.gray-bg
+    .middle-box.text-center.loginscreen.animated.fadeInDown
+      div
+        div
+          h1.logo-name PHY
+        h3 Register to Phyramid+
+        p Create account to see it int action.
+        form.m-t(method='post' role='form')
+          .form-group
+            input.form-control(type='text' name='email' id='email' placeholder='Email' required='' autofocus )
+          .form-group
+            input.form-control(type='password' name='password' id='password' placeholder='Password' required='')
+          button.btn.btn-primary.block.full-width.m-b(type='submit') Register
+          p.text-muted.text-center
+            small Already have an account?
+          a.btn.btn-sm.btn-white.btn-block(href='/login') Login

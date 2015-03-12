@@ -1,0 +1,9 @@
+#header {
+  padding: 2rem 0;
+}
+#header .avatar {
+  text-align: right;
+}
+#header .avatar img {
+  border-radius: 50%;
+}
